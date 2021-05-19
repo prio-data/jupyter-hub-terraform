@@ -1,0 +1,14 @@
+#!/bin/sh
+curl -L https://tljh.jupyter.org/bootstrap.py \
+ | sudo python3 - \
+ --show-progress-page \
+ --admin ${username} \
+
+export BASE=/opt/tljh/user/bin
+
+alias conda=$BASE/conda
+
+conda update conda
+conda create -n py38 python3.8 anaconda
+alias pip=
+conda activate py38
