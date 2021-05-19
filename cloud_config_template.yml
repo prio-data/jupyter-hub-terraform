@@ -6,9 +6,10 @@ curl -L https://tljh.jupyter.org/bootstrap.py \
 
 export BASE=/opt/tljh/user/bin
 
-alias conda=$BASE/conda
+add-apt-repository ppa:deadsnakes/ppa -y
+apt install python3.8 python3.8-venv -y
 
-conda update conda
-conda create -n py38 python3.8 anaconda
-alias pip=
-conda activate py38
+python3.8 -m venv /opt/tljh/venv
+/opt/tljh/venv/bin/pip install viewser views-stepshift ipykernel
+
+sed -i 's_python_/opt/tljh/venv/bin/python_g' /opt/tljh/user/share/jupyter/kernels/python3/kernel.json
